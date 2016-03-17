@@ -23,9 +23,11 @@ import readlineSync from 'readline-sync';
  */
 
 export function generateNumber() {
-  // YOUR CODE HERE
-  // BE SURE IT'S AN INTEGER OR YOU WILL BE SAD
+  return Math.floor(Math.random() * (100 )) + 1;
 }
+
+
+
 
 /**
  * We need a way to repeatedly ask for user input.
@@ -41,7 +43,8 @@ export function generateNumber() {
  */
 
 export function getUserGuess() {
-	// YOUR CODE HERE
+	var guess = readlineSync.question ('guess a number');
+  return Number (guess);
 }
 
 /**
@@ -55,7 +58,19 @@ export function getUserGuess() {
  */
 
 export function isRightNumber(correctNumber, userGuess) {
-  // YOUR CODE HERE
+ if (correctNumber === userGuess) {
+   return true;
+ }
+  else if (userGuess > correctNumber) {
+     console.log("Guess is too high")
+     return false;
+   }
+
+   else {
+     console.log("guess is too low")
+     return false;
+   }
+
 }
 
 /**
@@ -86,11 +101,26 @@ export function isRightNumber(correctNumber, userGuess) {
  */
 
 function runGame() {
-	// DISPLAY WELCOME BANNER
+	console.log("Welcome, guess a number")
 
-	// STORE INITIAL GAME STATE
+	var theNumber = generateNumber();
 
-	// WHILE LOOP FOR WHEN GAME IS NOT WON
+	var gameOver = false;
+
+  while(!gameOver) {
+    var guess = getUserGuess();
+
+    var didWin = isRightNumber(theNumber, guess);
+    if (didWin) {
+      gameOver = true;
+      console.log("you won")
+    }
+  }
+
+
+
+
+
 }
 
 /**
